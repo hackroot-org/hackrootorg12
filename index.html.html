@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Hackroot Organization | Computer Training Institute</title>
+  <!-- SEO Meta -->
+  <meta name="description" content="Hackroot Organization offers modern computer courses: Basic, Tally, Graphic Design, Digital Marketing, Web Dev, Cyber Security. Enroll now!">
+  <meta name="keywords" content="computer training, coding, digital marketing, graphic design, cyber security, web development">
+  <!-- Bootstrap 5 & AOS & Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Lightbox CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+  <style>
+    * {transition: all 0.3s ease; box-sizing: border-box;}
+    body {font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; overflow-x: hidden; width: 100%;}
+    /* gradient modern UI */
+    .bg-gradient-primary {background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);}
+    .bg-gradient-secondary {background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);}
+    
+    /* === NAVBAR (ultra responsive) === */
+    .navbar {background: rgba(255,255,255,0.98) !important; backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 0.5rem 1rem;}
+    .navbar-brand {font-size: clamp(1.2rem, 4vw, 1.8rem);}
+    .navbar-toggler {border: none; padding: 0.5rem; transition: 0.2s;}
+    .navbar-toggler:focus {box-shadow: none;}
+    .navbar-toggler:hover {transform: scale(1.1);}
+    .navbar-nav .nav-link{color:#2d3436; font-weight:500; margin:0.5rem 0; padding:0.5rem 1rem; border-radius:40px; transition:0.2s;}
+    .navbar-nav .nav-link:hover{background:#f0f3ff; color:#667eea;}
+    @media (min-width: 992px) {
+      .navbar-nav .nav-link{margin:0 0.3rem; padding:0.5rem 1rem;}
+      .navbar-nav .nav-link:after{content:''; position:absolute; bottom:0; left:50%; width:0; height:3px; background:#667eea; transition:0.3s; transform:translateX(-50%);}
+      .navbar-nav .nav-link:hover:after{width:70%;}
+      .navbar-nav .nav-link:hover{background:transparent;}
+    }
+    
+    /* === HERO SLIDER === */
+    .hero-slide{height: 100vh; max-height: 800px; min-height: 500px; background-size:cover; background-position:center; position:relative;}
+    .hero-slide::before{content:''; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5);}
+    .hero-content{z-index:2; color:white; text-shadow:0 2px 10px rgba(0,0,0,0.5); width:100%; padding:1rem;}
+    .hero-content h1 {font-size: clamp(2rem, 8vw, 4rem); line-height:1.2;}
+    .hero-content p {font-size: clamp(1rem, 3vw, 1.5rem);}
+    .carousel-indicators [data-bs-target]{width:12px; height:12px; border-radius:50%; background:#fff;}
+    
+    /* counters */
+    .counter-box{background:white; border-radius:30px; padding:1.5rem 1rem; box-shadow:0 20px 40px rgba(0,0,0,0.08); height:100%;}
+    .counter{font-size: clamp(2rem, 5vw, 3rem); font-weight:700; color:#667eea;}
+    
+    /* course cards */
+    .course-card{border:none; border-radius:20px; background:white; overflow:hidden; box-shadow:0 15px 30px rgba(0,0,0,0.1); transition:transform 0.4s, box-shadow 0.4s; height:100%;}
+    .course-card:hover{transform:translateY(-10px) scale(1.02); box-shadow:0 30px 50px rgba(102,126,234,0.3);}
+    .course-card img{height:180px; object-fit:cover; transition:transform 0.8s;}
+    .course-card:hover img{transform:scale(1.1);}
+    .img-overlay{position:relative; overflow:hidden;}
+    .enroll-btn{background:linear-gradient(135deg, #667eea, #764ba2); border:none; border-radius:50px; padding:10px 20px; font-weight:600; color:white; background-size:200% auto; width:100%;}
+    .enroll-btn:hover{background-position:right center; transform:scale(1.02); box-shadow:0 10px 20px #667eea80;}
+    
+    /* parallax mobile fix */
+    .parallax{background-attachment:scroll; background-position:center; background-repeat:no-repeat; background-size:cover; min-height:250px; position:relative;}
+    @media (min-width:768px){.parallax{background-attachment:fixed; min-height:300px;}}
+    
+    /* testimonial */
+    .testimonial-card{background:white; border-radius:30px; padding:1.5rem; box-shadow:0 15px 35px rgba(0,0,0,0.1); margin:10px;}
+    .testimonial-card img{width:70px; height:70px; border-radius:50%; object-fit:cover; border:4px solid #667eea;}
+    
+    /* certificate */
+    #certificateResult{transition:0.5s; transform:scale(0.9); opacity:0;}
+    #certificateResult.show{transform:scale(1); opacity:1;}
+    
+    /* gallery grid - responsive */
+    .gallery-item{position:relative; border-radius:20px; overflow:hidden; margin-bottom:20px; box-shadow:0 10px 20px rgba(0,0,0,0.15); aspect-ratio:4/3;}
+    .gallery-item img{width:100%; height:100%; object-fit:cover; transition:transform 0.5s;}
+    .gallery-item:hover img{transform:scale(1.2);}
+    .gallery-item .overlay{position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(102,126,234,0.5); opacity:0; transition:0.4s; display:flex; align-items:center; justify-content:center;}
+    .gallery-item:hover .overlay{opacity:1;}
+    
+    /* map container responsive */
+    .map-container{position:relative; overflow:hidden; border-radius:20px; box-shadow:0 20px 40px rgba(0,0,0,0.2); border:3px solid white;}
+    .map-container iframe{width:100%; height:auto; min-height:300px; max-height:450px; display:block;}
+    
+    /* footer */
+    .footer a{color:white; text-decoration:none; margin:0 8px; font-size:1.5rem; transition:0.3s; display:inline-block;}
+    .footer a:hover{color:#f093fb; transform:translateY(-5px);}
+    .footer ul {padding-left:0;}
+    .footer ul li {margin-bottom:0.5rem;}
+    
+    /* admission form */
+    .form-control, .form-select{border-radius:50px; border:2px solid #e0e0ff; padding:10px 20px; font-size:1rem;}
+    .btn-submit{background:linear-gradient(135deg, #f093fb, #f5576c); border:none; border-radius:50px; padding:12px 30px; color:white; font-weight:bold; width:100%;}
+    
+    /* general spacing for mobile */
+    section {padding: 60px 0;}
+    @media (max-width:576px) {section {padding: 40px 0;}}
+    h2 {font-size: clamp(1.8rem, 5vw, 2.8rem);}
+    .container {padding-left: 20px; padding-right: 20px;}
+  </style>
+</head>
+<body>
+  <!-- animated navbar (fully responsive) -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" data-aos="fade-down">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#"><i class="fas fa-laptop-code text-primary me-2"></i>Hackroot Organization</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#courses">Courses</a></li>
+          <li class="nav-item"><a class="nav-link" href="#admissions">Admissions</a></li>
+          <li class="nav-item"><a class="nav-link" href="#certificate">Certificate</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SLIDER (full width, responsive height) -->
+  <section id="home" class="p-0">
+    <div id="heroSlider" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#heroSlider" data-bs-slide-to="2"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active hero-slide" style="background-image: url('https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=1600');">
+          <div class="container h-100 d-flex align-items-center justify-content-center">
+            <div class="hero-content text-center" data-aos="fade-up">
+              <h1 class="fw-bold">Master The Digital World</h1>
+              <p class="lead">Industry certified courses | 100% placement assistance</p>
+              <a href="#courses" class="btn enroll-btn mt-3 w-auto px-5">Explore Courses</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item hero-slide" style="background-image: url('https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1600');">
+          <div class="container h-100 d-flex align-items-center justify-content-center">
+            <div class="hero-content text-center">
+              <h1 class="fw-bold">Learn From Experts</h1>
+              <p class="lead">Real-world projects & internships</p>
+              <a href="#admissions" class="btn enroll-btn mt-3 w-auto px-5">Apply Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item hero-slide" style="background-image: url('https://images.pexels.com/photos/1181373/pexels-photo-1181373.jpeg?auto=compress&cs=tinysrgb&w=1600');">
+          <div class="container h-100 d-flex align-items-center justify-content-center">
+            <div class="hero-content text-center">
+              <h1 class="fw-bold">Cyber Security & Ethical Hacking</h1>
+              <p class="lead">Protect the future. Enroll today</p>
+              <a href="#courses" class="btn enroll-btn mt-3 w-auto px-5">Get Started</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#heroSlider" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button>
+      <button class="carousel-control-next" type="button" data-bs-target="#heroSlider" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>
+    </div>
+  </section>
+
+  <!-- ANIMATED COUNTERS + about (stack on mobile) -->
+  <section id="about" class="py-5 bg-gradient-primary text-white">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6" data-aos="fade-right">
+          <h2 class="fw-bold">About Hackroot Organization</h2>
+          <p class="lead fs-5">We are a modern computer training institute with state-of-the-art labs, industry-oriented trainers, and a practical curriculum designed to make you job-ready from day one.</p>
+          <p>As a newly established institute, we are committed to delivering quality training with a focus on practical knowledge and real-world industry skills.</p>
+        </div>
+        <div class="col-lg-6">
+          <div class="row g-3 text-center">
+            <div class="col-4" data-aos="zoom-in"><div class="counter-box bg-white text-dark p-3"><i class="fas fa-users fa-2x text-primary"></i><h3 class="counter" data-target="65">0</h3><p class="mb-0">Students</p></div></div>
+            <div class="col-4" data-aos="zoom-in" data-aos-delay="100"><div class="counter-box bg-white text-dark p-3"><i class="fas fa-book-open fa-2x text-success"></i><h3 class="counter" data-target="06">0</h3><p class="mb-0">Courses</p></div></div>
+            <div class="col-4" data-aos="zoom-in" data-aos-delay="200"><div class="counter-box bg-white text-dark p-3"><i class="fas fa-briefcase fa-2x text-warning"></i><h3 class="counter" data-target="48">0</h3><p class="mb-0">Placements</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARALLAX 1 (mobile friendly) -->
+  <section class="parallax d-flex align-items-center justify-content-center" style="background-image: url('https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1600');" data-aos="fade">
+    <h2 class="text-white display-4 fw-bold text-center px-3" data-aos="flip-up">Shape Your Future</h2>
+  </section>
+
+  <!-- COURSES SECTION (6 cards, fully responsive grid) -->
+  <section id="courses" class="py-5">
+    <div class="container">
+      <h2 class="text-center fw-bold mb-5" data-aos="fade-down">Our Popular Courses <i class="fas fa-graduation-cap ms-2"></i></h2>
+      <div class="row g-4">
+        <!-- course 1 -->
+        <div class="col-sm-6 col-lg-4" data-aos="flip-left">
+          <div class="course-card"><div class="img-overlay"><img src="https://5.imimg.com/data5/WE/UJ/CC/SELLER-23321079/whatsapp-image-2020-04-14-at-12-11-54-am-1-.jpeg" class="card-img-top" alt="Basic Computer"></div><div class="card-body"><h5>Basic Computer</h5><p><i class="fas fa-clock"></i> 3 months | ₹1000/mo</p><p class="small">Fundamentals, MS Office, internet.</p><button class="btn enroll-btn">Enroll Now</button></div></div>
+        </div>
+        <div class="col-sm-6 col-lg-4" data-aos="flip-left" data-aos-delay="50">
+          <div class="course-card"><div class="img-overlay"><img src="https://cbtech.in/wp-content/uploads/2018/01/Tally-732x415.png" class="card-img-top" alt="Tally"></div><div class="card-body"><h5>Tally with GST</h5><p><i class="fas fa-clock"></i> 3 months | ₹2000/mo</p><p class="small">Accounting, inventory, taxation.</p><button class="btn enroll-btn">Enroll Now</button></div></div>
+        </div>
+        <div class="col-sm-6 col-lg-4" data-aos="flip-left" data-aos-delay="100">
+          <div class="course-card"><div class="img-overlay"><img src="https://sjcc.ac.in/mfti/wp-content/uploads/2022/04/graphic-design.jpg" alt="Graphic Designing"></div><div class="card-body"><h5>Graphic Designing</h5><p><i class="fas fa-clock"></i> 3 months | ₹1500/mo</p><p class="small">Photoshop, Illustrator, UI/UX.</p><button class="btn enroll-btn">Enroll Now</button></div></div>
+        </div>
+        <div class="col-sm-6 col-lg-4" data-aos="flip-left" data-aos-delay="150">
+          <div class="course-card"><div class="img-overlay"><img src="https://images.pexels.com/photos/905163/pexels-photo-905163.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Digital Marketing"></div><div class="card-body"><h5>Digital Marketing</h5><p><i class="fas fa-clock"></i> 4 months | ₹2000/mo</p><p class="small">SEO, SEM, social media, analytics.</p><button class="btn enroll-btn">Enroll Now</button></div></div>
+        </div>
+        <div class="col-sm-6 col-lg-4" data-aos="flip-left" data-aos-delay="200">
+          <div class="course-card"><div class="img-overlay"><img src="https://images.pexels.com/photos/1181271/pexels-photo-1181271.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Web Development"></div><div class="card-body"><h5>Web Development</h5><p><i class="fas fa-clock"></i> 6 months | ₹2000/mo</p><p class="small">HTML/CSS/JS, React, Node, MongoDB.</p><button class="btn enroll-btn">Enroll Now</button></div></div>
+        </div>
+        <div class="col-sm-6 col-lg-4" data-aos="flip-left" data-aos-delay="250">
+          <div class="course-card"><div class="img-overlay"><img src="https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Cyber Security"></div><div class="card-body"><h5>Cyber Security</h5><p><i class="fas fa-clock"></i> 6 months | ₹5000/mo</p><p class="small">Network security, ethical hacking.</p><button class="btn enroll-btn">Enroll Now</button></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADMISSIONS FORM (responsive) -->
+  <section id="admissions" class="py-5 bg-gradient-secondary text-white">
+    <div class="container">
+      <h2 class="text-center fw-bold mb-4">Start Your Journey — Apply Today</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 bg-white text-dark p-4 p-md-5 rounded-4 shadow-lg">
+          <form id="admissionForm" onsubmit="event.preventDefault(); alert('Application submitted (demo)');">
+            <div class="mb-3"><input type="text" class="form-control" placeholder="Full Name" required></div>
+            <div class="mb-3"><input type="tel" class="form-control" placeholder="Phone Number" required></div>
+            <div class="mb-3"><input type="email" class="form-control" placeholder="Email Address" required></div>
+            <div class="mb-3"><select class="form-select"><option>Basic Computer</option><option>Tally</option><option>Graphic Designing</option><option>Digital Marketing</option><option>Web Development</option><option>Cyber Security</option></select></div>
+            <button type="submit" class="btn btn-submit">Submit Application <i class="fas fa-arrow-right ms-2"></i></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATE VERIFICATION -->
+  <section id="certificate" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center fw-bold mb-5" data-aos="fade-right">Certificate Verification</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <div class="input-group mb-4 shadow">
+            <input type="text" id="certID" class="form-control" placeholder="Enter Certificate ID (e.g., TS12345)">
+            <button class="btn btn-primary" id="verifyBtn">Verify</button>
+          </div>
+        </div>
+      </div>
+      <div id="certificateResult" class="row justify-content-center"></div>
+    </div>
+  </section>
+
+  <!-- GALLERY (lightbox, responsive grid) -->
+  <section id="gallery" class="py-5" data-aos="fade">
+    <div class="container">
+      <h2 class="text-center fw-bold mb-5">Institute Gallery</h2>
+      <div class="row g-3 gallery-grid">
+        <div class="col-6 col-md-4"><a href="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=800" data-lightbox="institute" data-title="Computer Lab"><div class="gallery-item"><img src="https://lh3.googleusercontent.com/p/AF1QipMnw2y_PaHbFE13xTP4DeyBSs31VBH0-IBmTqYv=s1360-w1360-h1020-rw" alt="lab"><div class="overlay"><i class="fas fa-search-plus fa-2x text-white"></i></div></div></a></div>
+        <div class="col-6 col-md-4"><a href="https://images.pexels.com/photos/4145153/pexels-photo-4145153.jpeg?auto=compress&cs=tinysrgb&w=800" data-lightbox="institute" data-title="Students coding"><div class="gallery-item"><img src="https://lh3.googleusercontent.com/p/AF1QipPI154JYNGED91Vvh0HlZTcOq1g7Kj7T0OWasWG=s1360-w1360-h1020-rw" alt="students"><div class="overlay"><i class="fas fa-search-plus fa-2x"></i></div></div></a></div>
+        <div class="col-6 col-md-4"><a href="https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=800" data-lightbox="institute" data-title="Classroom training"><div class="gallery-item"><img src="https://lh3.googleusercontent.com/p/AF1QipMDSDuSc3ud3aIJiPklw2QcI7IlbYrEgwTicNC1=s1360-w1360-h1020-rw" alt="class"><div class="overlay"><i class="fas fa-search-plus fa-2x"></i></div></div></a></div>
+        <div class="col-6 col-md-4"><a href="https://images.pexels.com/photos/3184296/pexels-photo-3184296.jpeg?auto=compress&cs=tinysrgb&w=800" data-lightbox="institute" data-title="Digital Marketing"><div class="gallery-item"><img src="https://lh3.googleusercontent.com/p/AF1QipOJjOUzPC6pCiyLu3hl5cAm_zNihUXB-OjAIXrw=s1360-w1360-h1020-rw" alt="workshop"><div class="overlay"><i class="fas fa-search-plus fa-2x"></i></div></div></a></div>
+        <div class="col-6 col-md-4"><a href="https://images.pexels.com/photos/5380792/pexels-photo-5380792.jpeg?auto=compress&cs=tinysrgb&w=800" data-lightbox="institute" data-title="Cyber security lab"><div class="gallery-item"><img src="https://lh3.googleusercontent.com/p/AF1QipPT8GK54goCBy8nD-BB1ZpSsC0fX9S4UUSa4Q4K=s1360-w1360-h1020-rw" alt="cyber"><div class="overlay"><i class="fas fa-search-plus fa-2x"></i></div></div></a></div>
+        <div class="col-6 col-md-4"><a href="https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=800" data-lightbox="institute" data-title="graphic design"><div class="gallery-item"><img src="https://lh3.googleusercontent.com/p/AF1QipM88E4TCg85hiskEAxmufht3Xu55BU-_O3Xhknw=s1360-w1360-h1020-rw" alt="design"><div class="overlay"><i class="fas fa-search-plus fa-2x"></i></div></div></a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL SLIDER (responsive) -->
+  <section class="py-5 bg-gradient-primary text-white">
+    <div class="container">
+      <h2 class="text-center fw-bold mb-5">What Our Students Say</h2>
+      <div id="testimonialSlider" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active"><div class="testimonial-card text-dark mx-auto" style="max-width:600px;"><img src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200" class="rounded-circle mx-auto d-block mb-3" alt="student"><p>"Great faculty and labs. Got placed in a top MNC!"</p><h5>- Priya Sharma, Web Dev</h5></div></div>
+          <div class="carousel-item"><div class="testimonial-card text-dark mx-auto" style="max-width:600px;"><img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=200" class="rounded-circle mx-auto d-block mb-3" alt="student"><p>"Digital Marketing course was practical and updated."</p><h5>- Rahul Mehta</h5></div></div>
+          <div class="carousel-item"><div class="testimonial-card text-dark mx-auto" style="max-width:600px;"><img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=200" class="rounded-circle mx-auto d-block mb-3" alt="student"><p>"Cyber Security modules are excellent. Highly recommend."</p><h5>- Anjali K.</h5></div></div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialSlider" data-bs-slide="prev"><span class="carousel-control-prev-icon bg-dark rounded-circle p-2"></span></button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialSlider" data-bs-slide="next"><span class="carousel-control-next-icon bg-dark rounded-circle p-2"></span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOOGLE MAP (fully responsive) -->
+  <section id="map-section" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center fw-bold mb-5">Our Location</h2>
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d618.2730293335119!2d75.90187133537809!3d30.860033530684266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a9d530223e79f%3A0xab11b0486f8e0a4a!2sPandey%20Computer%20Education!5e0!3m2!1sen!2sin!4v1771745399778!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <p class="text-center mt-3"><i class="fas fa-map-pin text-primary me-2"></i>Hackroot Org</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (mobile stacked) -->
+  <footer id="contact" class="footer bg-dark text-white pt-5 pb-4">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-4 text-center text-md-start"><h5>Hackroot Organization</h5><p><i class="fas fa-map-marker-alt"></i> Hackroot Organization Institute, Sakti Nagar, Subhash Nagar, Ludhiana, Punjab 141007 <br><i class="fas fa-phone"></i> +91-86991 41338 ,75270 50563<br><i class="fas fa-envelope"></i> info@hackrootorg.in</p></div>
+        <div class="col-md-4 text-center"><h5>Quick Links</h5><ul class="list-unstyled"><li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#courses">Courses</a></li><li><a href="#certificate">Verification</a></li></ul></div>
+        <div class="col-md-4 text-center text-md-end"><h5>Follow Us</h5><a href="#"><i class="fab fa-facebook"></i></a><a href="https://www.instagram.com/hackrootorg.in?igsh=Z2l5MnBsdXo3ZzVr"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin"></i></a><a href="https://youtube.com/@hackrootorg2.0?si=XkvtRmKvVccve05r"><i class="fab fa-youtube"></i></a></div>
+      </div>
+      <hr class="bg-light mt-4"><p class="text-center mb-0 small">© 2026 Hackroot Organization. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+  <script>
+    AOS.init({duration: 800, once: true, disable: 'mobile'});
+    
+    // Animated counters (mobile friendly)
+    const counters = document.querySelectorAll('.counter');
+    const speed = 150;
+    const updateCount = (counter) => {
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText;
+      const inc = Math.ceil(target / speed);
+      if(count < target) { counter.innerText = Math.min(count + inc, target); setTimeout(() => updateCount(counter), 15); }
+      else counter.innerText = target;
+    };
+    const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if(entry.isIntersecting){ counters.forEach(c => { if(c.innerText == '0') updateCount(c); }); } }); }, {threshold:0.3});
+    document.querySelectorAll('.counter-box').forEach(box => observer.observe(box));
+
+    // Certificate verification
+    document.getElementById('verifyBtn').addEventListener('click', function(){
+      let certId = document.getElementById('certID').value.trim();
+      let resultDiv = document.getElementById('certificateResult');
+      let html = '';
+      if(certId === '' || certId.length < 4){
+        html = `<div class="col-md-8 col-lg-6"><div class="card invalid-card p-4 shadow-lg" data-aos="zoom-in"><h4 class="text-danger"><i class="fas fa-times-circle"></i> Invalid ID</h4><p>Please enter a valid certificate ID.</p></div></div>`;
+      } else if(certId === 'TS12345') {
+        html = `<div class="col-md-8 col-lg-6"><div class="card valid-card p-4 shadow-lg" data-aos="zoom-in"><h4 class="text-success"><i class="fas fa-check-circle"></i> Valid Certificate</h4><p><strong>Student Name:</strong> Ritesh Verma<br><strong>Course:</strong> Web Development<br><strong>Duration:</strong> 6 months<br><strong>Issue Date:</strong> 15 Jan 2025<br><span class="badge bg-success">Status: Valid</span></p></div></div>`;
+      } else {
+        html = `<div class="col-md-8 col-lg-6"><div class="card invalid-card p-4 shadow-lg" data-aos="zoom-in"><h4 class="text-danger"><i class="fas fa-exclamation-triangle"></i> Certificate Not Found</h4><p>The ID does not match our records.</p></div></div>`;
+      }
+      resultDiv.innerHTML = html;
+      resultDiv.classList.add('show');
+      AOS.refresh();
+    });
+  </script>
+</body>
+</html>
